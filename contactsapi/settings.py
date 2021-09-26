@@ -140,8 +140,10 @@ USE_TZ = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
+    "http://localhost:8000",
     "http://localhost:3000",
     "http://127.0.0.1:9000",
+    "http://127.0.0.1:8000",
 ]
 
 # JWT
@@ -151,8 +153,6 @@ JWT_SECRET_KEY = "1231231"
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
 
 
 # Default primary key field type

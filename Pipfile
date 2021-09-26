@@ -6,12 +6,12 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-pyjwt = "*"
 psycopg2 = "*"
 django-heroku = "*"
 drf-yasg = "*"
 gunicorn = "*"
 django-cors-headers = "*"
+pyjwt = "==1.7.1"
 
 [dev-packages]
 
