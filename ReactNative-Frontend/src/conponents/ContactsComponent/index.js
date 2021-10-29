@@ -86,21 +86,23 @@ const ContactsComponent = ({sortBy, data, loading}) => {
               renderItem={renderItem}
               data={
                 sortBy
-                  ? data.sort((a, b) => {
-                      if (sortBy == 'First Name') {
-                        if (b.first_name > a.first_name) {
-                          return -1;
-                        } else {
-                          return 1;
+                  ? sortBy == 'Recently'
+                    ? data.reverse()
+                    : data.sort((a, b) => {
+                        if (sortBy == 'First Name') {
+                          if (b.first_name > a.first_name) {
+                            return -1;
+                          } else {
+                            return 1;
+                          }
+                        } else if (sortBy == 'Last Name') {
+                          if (b.last_name > a.last_name) {
+                            return -1;
+                          } else {
+                            return 1;
+                          }
                         }
-                      } else if (sortBy == 'Last Name') {
-                        if (b.last_name > a.last_name) {
-                          return -1;
-                        } else {
-                          return 1;
-                        }
-                      }
-                    })
+                      })
                   : data
               }
               ItemSeparatorComponent={() => (

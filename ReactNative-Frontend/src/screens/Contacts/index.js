@@ -10,6 +10,10 @@ import {GlobalContext} from '../../context/Provider';
 const Contacts = () => {
   const getSettings = async () => {
     const sortPref = await AsyncStorage.getItem('sortBy');
+    console.log(sortBy + ' ' + sortPref);
+    if (sortPref == 'Recently') {
+      getContacts()(contactsDispatch);
+    }
     if (sortPref) {
       setSortBy(sortPref);
     }
@@ -53,15 +57,7 @@ const Contacts = () => {
       ),
     });
   }, []);
-  return (
-    <ContactsComponent
-      modalVisible={modalVisible}
-      setModalVisible={setModalVisible}
-      data={data}
-      loading={loading}
-      sortBy={sortBy}
-    />
-  );
+  return <ContactsComponent data={data} loading={loading} sortBy={sortBy} />;
 };
 
 export default Contacts;

@@ -40,6 +40,15 @@ const Settings = () => {
       },
       selected: sortBy == 'Last Name',
     },
+    {
+      name: 'Recently',
+      onPress: () => {
+        saveSettings('sortBy', 'Recently');
+        setSortBy('Recently');
+        setModalVisible(false);
+      },
+      selected: sortBy == 'Recently',
+    },
   ];
   const settingsOptions = [
     {
