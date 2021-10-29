@@ -10,3 +10,4 @@ class Contact(models.Model):
     phone_number = models.CharField(max_length=30)
     contact_picture=models.URLField(null=True)
     is_favorite = models.BooleanField(default=False)
+    
