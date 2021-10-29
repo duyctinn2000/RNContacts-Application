@@ -1,1 +1,1 @@
-# contactListApp
+# RNContacts Application
