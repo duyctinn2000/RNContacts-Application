@@ -20,19 +20,21 @@ const ContactDetailComponet = ({contact}) => {
         <ImageComponent source={uri} />
         <View style={styles.content}>
           <Text style={styles.name}>{first_name + ' ' + last_name}</Text>
-          <View style={{flexDirection: 'row', marginTop: 20}}>
-            <Icon name="phone" size={21} />
-            <Text style={{marginLeft: 10}}>{phone_number}</Text>
-          </View>
-          <View style={{flexDirection: 'row', marginVertical: 20}}>
-            <Icon name="flag" size={21} />
-            <Text style={{marginLeft: 10}}>{country_code}</Text>
+          <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+            <View style={{flexDirection: 'row', marginTop: 20}}>
+              <Icon name="phone" size={21} />
+              <Text style={{marginLeft: 10}}>{phone_number}</Text>
+            </View>
+            <View style={{flexDirection: 'row', marginVertical: 20}}>
+              <Icon name="flag" size={21} />
+              <Text style={{marginLeft: 10}}>{country_code || '0'}</Text>
+            </View>
           </View>
           <CustomButton
             primary
             title="Edit Contact"
             onPress={() => {
-              navigate(CREATE_CONTACT, {contact, eddit: true});
+              navigate(CREATE_CONTACT, {contact, edit: true});
             }}
           />
         </View>

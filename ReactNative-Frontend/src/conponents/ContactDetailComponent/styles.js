@@ -9,6 +9,7 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
   },
   name: {
+    alignSelf: 'center',
     fontSize: 23,
   },
   content: {

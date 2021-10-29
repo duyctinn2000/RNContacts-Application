@@ -1,16 +1,24 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useFocusEffect, useNavigation} from '@react-navigation/core';
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import {useFocusEffect, useNavigation, useRoute} from '@react-navigation/core';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import {TouchableOpacity} from 'react-native';
 import Icon from '../../conponents/common/Icon';
 import ContactsComponent from '../../conponents/ContactsComponent';
+import {CONTACT_DETAIL} from '../../constants/routeName';
 import logout from '../../context/actions/auth/logout';
 import getContacts from '../../context/actions/contacts/getContacts';
 import {GlobalContext} from '../../context/Provider';
 const Contacts = () => {
+  [x, setX] = useState(false);
+  const {navigate} = useNavigation();
   const getSettings = async () => {
     const sortPref = await AsyncStorage.getItem('sortBy');
-    console.log(sortBy + ' ' + sortPref);
     if (sortPref == 'Recently') {
       getContacts()(contactsDispatch);
     }
@@ -18,17 +26,36 @@ const Contacts = () => {
       setSortBy(sortPref);
     }
   };
+
+  const contactsRef = useRef([]);
   const [sortBy, setSortBy] = useState(null);
 
   useFocusEffect(
     useCallback(() => {
+      if (!x) {
+        setX(true);
+      } else {
+        setX(false);
+      }
       getSettings();
       return () => {};
     }, []),
   );
 
+  useEffect(() => {
+    const prev = contactsRef.current;
+    contactsRef.current = data;
+    const newList = contactsRef.current;
+    console.log(newList.length - prev.length);
+    if (newList.length - prev.length === 1) {
+      const newContacts = newList.find(
+        (item) => !prev.map((i) => i.id).includes(item.id),
+      );
+      navigate(CONTACT_DETAIL, {item: newContacts});
+    }
+  }, [x]);
+
   const {setOptions, toggleDrawer} = useNavigation();
-  const [modalVisible, setModalVisible] = useState(false);
 
   const {
     contactsDispatch,

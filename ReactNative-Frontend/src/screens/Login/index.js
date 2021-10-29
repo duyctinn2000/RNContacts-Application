@@ -3,7 +3,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import LoginComponent from '../../conponents/LoginComponent';
 import {RELOAD_ERROR} from '../../constants/actionsType';
 import login from '../../context/actions/auth/login';
-import logout from '../../context/actions/auth/logout';
 import {GlobalContext} from '../../context/Provider';
 const Login = () => {
   const {params} = useRoute();

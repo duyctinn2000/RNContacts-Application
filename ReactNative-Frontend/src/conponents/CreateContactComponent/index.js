@@ -21,6 +21,7 @@ const CreateContactComponent = ({
   sheetRef,
   openSheet,
   closeSheet,
+  edit,
   localFile,
   onFileSelected,
 }) => {
@@ -28,7 +29,13 @@ const CreateContactComponent = ({
     <View style={styles.container}>
       <Container>
         <Image
-          source={{uri: localFile?.path || DEFALUT_IMAGE_SET}}
+          source={{
+            uri:
+              form?.contactPicture ||
+              localFile?.path ||
+              localFile ||
+              DEFALUT_IMAGE_SET,
+          }}
           style={styles.imageView}
         />
         <TouchableOpacity onPress={openSheet}>
@@ -39,11 +46,13 @@ const CreateContactComponent = ({
           onChangeText={(value) => {
             onChangeText({name: 'firstName', value: value});
           }}
+          value={form.firstName || ''}
           placeholder="Enter First name"
           error={error?.first_name?.[0]}
         />
         <Input
           label="Last name"
+          value={form.lastName || ''}
           placeholder="Enter Last name"
           onChangeText={(value) => {
             onChangeText({name: 'lastName', value: value});
@@ -55,7 +64,7 @@ const CreateContactComponent = ({
             <CountryPicker
               withFilter
               withFlag
-              countryCode={form.countryCode || undefined}
+              countryCode={form?.countryCode || 'VN'}
               withCountryNameButton={false}
               withCallingCode
               withCallingCodeButton
@@ -79,6 +88,7 @@ const CreateContactComponent = ({
           error={error?.phone_number?.[0]}
           label="Phone number"
           placeholder="Enter Phone number"
+          value={form.phoneNumber || ''}
         />
         <View
           style={{
@@ -101,7 +111,7 @@ const CreateContactComponent = ({
           disable={loading}
           onPress={onSubmit}
           primary
-          title="Submit"
+          title={edit ? 'Update' : 'Create'}
         />
       </Container>
       <ImagePicker ref={sheetRef} onFileSelected={onFileSelected} />

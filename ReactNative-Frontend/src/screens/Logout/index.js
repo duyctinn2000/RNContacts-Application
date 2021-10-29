@@ -1,5 +1,6 @@
+import {useNavigation} from '@react-navigation/core';
 import React, {useContext, useEffect} from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import logout from '../../context/actions/auth/logout';
 import {GlobalContext} from '../../context/Provider';
 

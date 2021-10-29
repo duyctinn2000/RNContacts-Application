@@ -1,12 +1,12 @@
-import {StyleSheet} from 'react-native';
+import {ScaledSheet} from 'react-native-size-matters';
 import colors from '../../assets/theme/colors';
 
-export default StyleSheet.create({
+export default ScaledSheet.create({
   logoImage: {
-    width: 150,
-    height: 150,
+    width: '150@s',
+    height: '150@s',
     alignSelf: 'center',
-    marginTop: 50,
+    marginTop: '50@s',
   },
   title: {
     fontSize: 21,
@@ -25,9 +25,9 @@ export default StyleSheet.create({
   linkBtn: {
     paddingLeft: 17,
     color: colors.primary,
-    fontSize: 16,
+    fontSize: '16@s',
   },
   infoText: {
-    fontSize: 16,
+    fontSize: '16@s',
   },
 });

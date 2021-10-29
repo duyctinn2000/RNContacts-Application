@@ -8,6 +8,7 @@ import CustomButton from '../common/CustomButton';
 import Input from '../common/Input';
 import Message from '../common/Message';
 import styles from './styles';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 const LoginComponent = ({
   error,
@@ -33,8 +34,13 @@ const LoginComponent = ({
         style={styles.logoImage}
       />
       <View>
-        <Text style={styles.title}> Welcome to RNContacts </Text>
-        <Text style={styles.subTitle}> Please login here </Text>
+        <Text style={{...styles.title, fontSize: scale(21)}}>
+          {' '}
+          Welcome to RNContacts{' '}
+        </Text>
+        <Text style={{...styles.subTitle, fontSize: scale(17)}}>
+          Please login here{' '}
+        </Text>
 
         <View style={styles.form}>
           {justRegister && (
